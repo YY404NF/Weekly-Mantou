@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import mantouConfig from './config/mantou.json'
 import DrawView from './views/DrawView.vue'
 import ResultView from './views/ResultView.vue'
-import type { DrawResult, DrawResultBase, DrawResultItem, MantouItem } from './types/mantou'
+import type { DrawResult, DrawResultBase, MantouItem } from './types/mantou'
 
 const mantouList = mantouConfig as MantouItem[]
 
@@ -141,7 +141,7 @@ function backToDraw() {
   <main class="app-shell">
     <section class="phone-card">
       <header class="card-header">
-        <h1>每周馒头抽奖器</h1>
+        <h1>馒头抽奖器</h1>
         <p>选择困难症也要买馒头！</p>
       </header>
 
