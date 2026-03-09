@@ -56,7 +56,7 @@ function closePreview(): void {
       </TresCanvas>
     </div>
 
-    <p class="preview-exit-label" :class="{ 'is-visible': entered }">XX馒头</p>
+    <p class="preview-exit-label" :class="{ 'is-visible': entered }">{{ item.name }}</p>
     <button class="preview-close-btn" :class="{ 'is-visible': entered }" @click="closePreview">关闭预览</button>
   </div>
 </template>
