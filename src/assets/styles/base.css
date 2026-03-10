@@ -4,54 +4,6 @@
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: 'Apple Text Web';
-  src: url('/fonts/apple/SF-Pro-Text-Medium.otf') format('opentype');
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Apple Text Web';
-  src: url('/fonts/apple/SF-Pro-Text-Bold.otf') format('opentype');
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Apple Display Web';
-  src: url('/fonts/apple/SF-Pro-Display-Semibold.otf') format('opentype');
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Apple Display Web';
-  src: url('/fonts/apple/SF-Pro-Display-Bold.otf') format('opentype');
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PingFang SC Web';
-  src: url('/fonts/apple/PingFangSC-Medium.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PingFang SC Web';
-  src: url('/fonts/apple/PingFangSC-Semibold.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-
 html,
 body,
 #app {
@@ -65,18 +17,16 @@ body,
 
 body {
   font-family:
-    'Apple Text Web',
-    'PingFang SC Web',
-    'SF Pro Text',
-    'PingFang SC',
     -apple-system,
     BlinkMacSystemFont,
+    'SF Pro Text',
+    'Segoe UI',
+    'PingFang SC',
     'Helvetica Neue',
     sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.42;
   letter-spacing: 0.01em;
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   color: #111827;
   background:
@@ -104,16 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:
-    'Apple Display Web',
-    'PingFang SC Web',
-    'SF Pro Display',
-    'PingFang SC',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Helvetica Neue',
-    sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
@@ -128,7 +69,7 @@ b,
 .slot-count,
 .pool-card-name,
 .preview-exit-label {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 #app,
