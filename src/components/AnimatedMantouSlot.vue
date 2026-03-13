@@ -19,6 +19,9 @@ const emit = defineEmits<{
   preview: [item: DrawResultItem]
 }>()
 
+const cameraPosition = [0, 0.1, 1.5] as const
+const viewingTilt = 0.6
+const targetScale = 5
 const delayMs = computed(() => props.index * props.stageDuration)
 const slotKey = computed(() => `${props.item.id}-${props.index}`)
 
@@ -44,11 +47,10 @@ const progress = computed(() => {
 const groupRotation = computed<[number, number, number]>(() => {
   const introSpin = -(1 - progress.value) * Math.PI * 7.5
   const idleSpin = Math.max(0, props.elapsedMs - delayMs.value) * 0.00115
-  return [0, introSpin + idleSpin, 0]
+  return [viewingTilt, introSpin + idleSpin, 0]
 })
 
 const groupScale = computed<[number, number, number]>(() => {
-  const targetScale = 4.4
   const s = Math.max(0.001, easeOutBack(progress.value) * targetScale)
   return [s, s, s]
 })
@@ -77,7 +79,7 @@ function handlePreviewClick(event: MouseEvent): void {
       @click="handlePreviewClick"
     >
       <TresCanvas :clear-color="'#00000000'" :alpha="true">
-        <TresPerspectiveCamera :position="[0, 0.2, 2.35]" />
+        <TresPerspectiveCamera :position="cameraPosition" />
         <TresAmbientLight :intensity="1.45" />
         <TresDirectionalLight :position="[2.2, 4.5, 4.5]" :intensity="1.9" />
 

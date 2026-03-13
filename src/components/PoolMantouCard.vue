@@ -9,12 +9,19 @@ const props = defineProps<{
   index: number
 }>()
 
+const cameraPosition = [0, 0.1, 1.5] as const
+const viewingTilt = 0.6
+const displayScale = 8
 const elapsedMs = ref(0)
 const loaded = ref(false)
 let rafId = 0
 let startedAt = 0
 
-const modelRotation = computed<[number, number, number]>(() => [0, props.index * 0.42 + elapsedMs.value * 0.00045, 0])
+const modelRotation = computed<[number, number, number]>(() => [
+  viewingTilt,
+  props.index * 0.42 + elapsedMs.value * 0.00045,
+  0,
+])
 const modelY = computed(() => Math.sin(elapsedMs.value * 0.0022 + props.index * 0.6) * 0.04)
 const cardVisible = computed(() => loaded.value)
 
@@ -44,14 +51,14 @@ onBeforeUnmount(() => {
   <article class="pool-card" :class="{ 'is-visible': cardVisible }">
     <div class="pool-card-canvas">
       <TresCanvas :clear-color="'#00000000'" :alpha="true">
-        <TresPerspectiveCamera :position="[0, 0.08, 2.35]" />
+        <TresPerspectiveCamera :position="cameraPosition" />
         <TresAmbientLight :intensity="1.55" />
         <TresDirectionalLight :position="[2.4, 4.4, 4.2]" :intensity="1.9" />
 
         <TresGroup
           :position="[0, modelY, 0]"
           :rotation="modelRotation"
-          :scale="[3.4, 3.4, 3.4]"
+          :scale="[displayScale, displayScale, displayScale]"
         >
           <MantouModel :model-url="item.modelUrl" :scale="1" @loaded="handleLoaded" />
         </TresGroup>

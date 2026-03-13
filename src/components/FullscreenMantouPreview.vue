@@ -13,6 +13,9 @@ const emit = defineEmits<{
   close: []
 }>()
 
+const cameraPosition = [0, 0.5, 1.5] as const
+const previewScale = 8
+const previewRotation = [0.3, 0, 0] as const
 const entered = ref(false)
 const modelReady = ref(false)
 const hugeAngle = Math.PI * 1000
@@ -37,7 +40,7 @@ function closePreview(): void {
   <div class="preview-overlay" :class="{ 'is-visible': entered }">
     <div class="preview-canvas" :class="{ 'is-visible': entered, 'model-ready': modelReady }">
       <TresCanvas :clear-color="'#00000000'" :alpha="true">
-        <TresPerspectiveCamera :position="[0, 0.3, 3.6]" />
+        <TresPerspectiveCamera :position="cameraPosition" />
         <OrbitControls
           :enable-pan="false"
           :min-distance="2.4"
@@ -50,7 +53,7 @@ function closePreview(): void {
         <TresAmbientLight :intensity="1.5" />
         <TresDirectionalLight :position="[3, 5, 4.5]" :intensity="2" />
 
-        <TresGroup :scale="[4.8, 4.8, 4.8]" :rotation="[0, 0.4, 0]">
+        <TresGroup :scale="[previewScale, previewScale, previewScale]" :rotation="previewRotation">
           <MantouModel :model-url="item.modelUrl" :scale="1" @loaded="handleModelLoaded" />
         </TresGroup>
       </TresCanvas>
