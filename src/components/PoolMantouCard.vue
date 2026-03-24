@@ -23,10 +23,12 @@ let startedAt = 0
 
 const modelRotation = computed<[number, number, number]>(() => [
   viewingTilt,
-  props.index * 0.42 + elapsedMs.value * 0.00045,
+  props.item.purchasable ? props.index * 0.42 + elapsedMs.value * 0.00045 : props.index * 0.42,
   0,
 ])
-const modelY = computed(() => Math.sin(elapsedMs.value * 0.0022 + props.index * 0.6) * 0.04)
+const modelY = computed(() =>
+  props.item.purchasable ? Math.sin(elapsedMs.value * 0.0022 + props.index * 0.6) * 0.04 : 0,
+)
 const cardVisible = computed(() => loaded.value)
 
 function formatPrice(value: number): string {
@@ -56,7 +58,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <article class="pool-card" :class="{ 'is-visible': cardVisible }" @click="handlePreviewClick">
+  <article
+    class="pool-card"
+    :class="{ 'is-visible': cardVisible, 'is-disabled': !item.purchasable }"
+    @click="handlePreviewClick"
+  >
     <div class="pool-card-canvas">
       <TresCanvas :clear-color="'#00000000'" :alpha="true">
         <TresPerspectiveCamera :position="cameraPosition" />
@@ -76,6 +82,7 @@ onBeforeUnmount(() => {
     <div class="pool-card-meta">
       <p class="pool-card-name">{{ item.name }}</p>
       <p class="pool-card-price">{{ formatPrice(item.price) }} / 个</p>
+      <p v-if="!item.purchasable" class="pool-card-status">暂不可购买</p>
     </div>
   </article>
 </template>

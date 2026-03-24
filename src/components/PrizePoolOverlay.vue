@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import FullscreenMantouPreview from '@/components/FullscreenMantouPreview.vue'
 import PoolMantouCard from '@/components/PoolMantouCard.vue'
 import type { MantouItem } from '@/types/mantou'
 
-defineProps<{
+const props = defineProps<{
   items: MantouItem[]
 }>()
 
@@ -14,6 +14,11 @@ const emit = defineEmits<{
 
 const entered = ref(false)
 const activePreviewItem = ref<MantouItem | null>(null)
+const sortedItems = computed(() => {
+  const fixedItems = props.items.filter((item) => item.fixed)
+  const normalItems = props.items.filter((item) => !item.fixed)
+  return [...fixedItems, ...normalItems]
+})
 
 onMounted(() => {
   requestAnimationFrame(() => {
@@ -42,14 +47,16 @@ function closePreview(): void {
         <h2>奖池内容</h2>
       </div>
 
-      <div class="pool-grid">
+      <div class="pool-grid-scroll">
+        <div class="pool-grid">
         <PoolMantouCard
-          v-for="(item, index) in items"
+          v-for="(item, index) in sortedItems"
           :key="item.id"
           :item="item"
           :index="index"
           @preview="openPreview"
         />
+        </div>
       </div>
     </section>
 

@@ -24,9 +24,9 @@ const stageDuration = 1700
 const introDuration = 1050
 
 const orderedItems = computed(() => {
+  const fixedItem = props.items.find((item) => item.fixed)
   const normalItems = props.items.filter((item) => !item.fixed)
-  const whiteItem = props.items.find((item) => item.fixed)
-  return (whiteItem ? [...normalItems, whiteItem] : normalItems).slice(0, 3)
+  return (fixedItem ? [fixedItem, ...normalItems] : normalItems).slice(0, 3)
 })
 
 const introEndAtMs = computed(() => {
