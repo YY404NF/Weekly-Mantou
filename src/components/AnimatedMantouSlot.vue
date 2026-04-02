@@ -78,7 +78,7 @@ function handlePreviewClick(event: MouseEvent): void {
       :disabled="!canPreview"
       @click="handlePreviewClick"
     >
-      <TresCanvas :clear-color="'#00000000'" :alpha="true">
+      <TresCanvas :clear-color="'#000000'" :clear-alpha="0" :alpha="true">
         <TresPerspectiveCamera :position="cameraPosition" />
         <TresAmbientLight :intensity="1.45" />
         <TresDirectionalLight :position="[2.2, 4.5, 4.5]" :intensity="1.9" />

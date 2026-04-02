@@ -39,7 +39,7 @@ function closePreview(): void {
 <template>
   <div class="preview-overlay" :class="{ 'is-visible': entered }">
     <div class="preview-canvas" :class="{ 'is-visible': entered, 'model-ready': modelReady }">
-      <TresCanvas :clear-color="'#00000000'" :alpha="true">
+      <TresCanvas :clear-color="'#000000'" :clear-alpha="0" :alpha="true">
         <TresPerspectiveCamera :position="cameraPosition" />
         <OrbitControls
           :enable-pan="false"

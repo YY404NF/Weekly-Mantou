@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
     @click="handlePreviewClick"
   >
     <div class="pool-card-canvas">
-      <TresCanvas :clear-color="'#00000000'" :alpha="true">
+      <TresCanvas :clear-color="'#000000'" :clear-alpha="0" :alpha="true">
         <TresPerspectiveCamera :position="cameraPosition" />
         <TresAmbientLight :intensity="1.55" />
         <TresDirectionalLight :position="[2.4, 4.4, 4.2]" :intensity="1.9" />
